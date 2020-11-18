@@ -3,23 +3,17 @@ use crate::operators::Operator;
 
 pub struct Token(pub f64, pub Operator);
 
-pub struct Tokens {
-    pub tokens: Vec<Token>,
+pub trait Tokens {
+    fn eval(&self) -> f64;
 }
 
-impl Tokens {
-    pub fn new() -> Tokens {
-        Tokens {
-            tokens: vec!(),
-        }
-    }
-
-    pub fn eval(&self) -> f64 {
+impl Tokens for Vec<Token> {
+    fn eval(&self) -> f64 {
         let mut result: f64 = 0.0;
         let mut i = 0;        
         
-        while i < self.tokens.len() {
-            let token = &self.tokens[i];
+        while i < self.len() {
+            let token = &self[i];
 
             match token.1 {
                 Operator::Addition => {

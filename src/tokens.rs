@@ -5,6 +5,8 @@ pub struct Token(pub f64, pub Operator);
 
 pub trait Tokens {
     fn eval(&self) -> f64;
+    fn create(&mut self, num: f64, operator: Operator);
+    fn create_at(&mut self, num: f64, operator: Operator, i: usize);
 }
 
 impl Tokens for Vec<Token> {
@@ -40,6 +42,14 @@ impl Tokens for Vec<Token> {
 
 
         return result;
+    }
+
+    fn create(&mut self, num: f64, operator: Operator) {
+        self.push(Token(num, operator));
+    }
+
+    fn create_at(&mut self, num: f64, operator: Operator, i: usize) {
+        self.insert(i, Token(num, operator));
     }
 }
 

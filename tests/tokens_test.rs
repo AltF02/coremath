@@ -24,5 +24,24 @@ mod tests {
 
         assert_eq!(answer, tokens.eval());
     }
+
+    #[test]
+    fn test_create() {
+        let mut tokens = Vec::<Token>::new();
+        tokens.create(1.0, Operator::Addition);
+
+        assert_eq!(1, tokens.len());
+    }
+
+    #[test]
+    fn test_create_at() {
+        let mut tokens = Vec::<Token>::new();
+        let answer = (5.0 * 2.0) + 10.0;
+        tokens.create(5.0, Operator::Addition);
+        tokens.create(10.0, Operator::Addition);
+        tokens.create_at(1, 2.0, Operator::Multiplication);
+
+        assert_eq!(answer, tokens.eval());
+    }
 }
 

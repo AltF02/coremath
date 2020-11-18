@@ -7,7 +7,7 @@ mod tests {
     use coremath::operators::Operator;
 
     #[test]
-    fn test_tokens() {
+    fn test_eval() {
         let mut tokens = Vec::<Token>::new();
 
         let token_1 = Token(10.0, Operator::Addition);
